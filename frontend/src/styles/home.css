@@ -1,0 +1,52 @@
+.home {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #4a90e2, #6a11cb);
+  color: white;
+}
+
+.home-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.home-nav a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.hero {
+  text-align: center;
+  margin-top: 120px;
+}
+
+.hero h1 {
+  font-size: 42px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.hero-buttons {
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 12px 22px;
+  border-radius: 6px;
+  margin: 10px;
+}
+
+.primary {
+  background: white;
+  color: #4a90e2;
+}
+
+.secondary {
+  border: 2px solid white;
+  color: white;
+}
