@@ -39,7 +39,8 @@ const Dashboard = () => {
           <StatCard title="Total Products" value={stats.totalProducts} icon={<CubeIcon />} />
           <StatCard title="Total Stock" value={stats.totalStock} icon={<Squares2X2Icon />} />
           <StatCard title="Low Stock Items" value={stats.lowStockCount} icon={<ExclamationTriangleIcon />} />
-          <StatCard title="Today's Activity" value="0" icon={<ChartBarIcon />} />
+          <StatCard title="Today's Activity" value={stats.todayActivityCount} icon={<ChartBarIcon />} />
+
         </div>
 
         {/* LOW STOCK ALERT – ONLY WHEN EXISTS */}

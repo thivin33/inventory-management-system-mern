@@ -18,12 +18,14 @@ const productRoutes = require("./routes/productRoutes");
 const stockRoutes = require("./routes/stockRoutes");
 const logRoutes = require("./routes/logRoutes");
 const inventoryRoutes = require("./routes/inventoryRoutes"); // ✅ ADD THIS
+const errorHandler = require("./middleware/errorMiddleware");
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/stock", stockRoutes);
 app.use("/api/logs", logRoutes);
 app.use("/api/inventory", inventoryRoutes); // ✅ ADD THIS
+app.use(errorHandler);
 
 // 🔹 Test route
 app.get("/api/test", (req, res) => {

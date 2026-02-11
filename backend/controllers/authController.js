@@ -9,6 +9,33 @@ exports.registerUser = async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
 
+    /* 🔐 VALIDATION START */
+    if (!name || !email || !password || !role) {
+      return res.status(400).json({
+        message: "All fields are required",
+      });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        message: "Invalid email format",
+      });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({
+        message: "Password must be at least 6 characters",
+      });
+    }
+
+    if (!["admin", "staff"].includes(role)) {
+      return res.status(400).json({
+        message: "Invalid role",
+      });
+    }
+    /* 🔐 VALIDATION END */
+
     // 1️⃣ Check if user already exists
     const userExists = await User.findOne({ email });
     if (userExists) {
@@ -54,6 +81,14 @@ exports.registerUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    /* 🔐 VALIDATION START */
+    if (!email || !password) {
+      return res.status(400).json({
+        message: "Email and password are required",
+      });
+    }
+    /* 🔐 VALIDATION END */
 
     // 1️⃣ Check if user exists
     const user = await User.findOne({ email });
