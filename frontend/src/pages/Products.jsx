@@ -61,7 +61,7 @@ const Products = () => {
 
   // 🔹 Delete product
   const deleteProduct = async (id) => {
-    await fetch(`http://localhost:5000/api/products/${id}`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/products/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -134,28 +134,28 @@ const Products = () => {
                   <td className="p-4">{p.minimumStock}</td>
 
                  <td className="p-4 flex justify-center gap-3">
-  {/* EDIT */}
-  <button
-    onClick={() => {
-      setForm(p);
-      setEditId(p._id);
-      setShowModal(true);
-    }}
-    className="p-2 rounded-lg hover:bg-blue-100 transition"
-    title="Edit product"
-  >
-    <PencilIcon className="w-4 h-4 text-blue-600" />
-  </button>
+                {/* EDIT */}
+                 <button
+                 onClick={() => {
+                 setForm(p);
+                 setEditId(p._id);
+                 setShowModal(true);
+                }}
+                 className="p-2 rounded-lg hover:bg-blue-100 transition"
+                 title="Edit product"
+                  > 
+                 <PencilIcon className="w-4 h-4 text-blue-600" />
+                  </button>
 
-  {/* DELETE */}
-  <button
-    onClick={() => deleteProduct(p._id)}
-    className="p-2 rounded-lg hover:bg-red-100 transition"
-    title="Delete product"
-  >
-    <TrashIcon className="w-4 h-4 text-red-500" />
-  </button>
-</td>
+                 {/* DELETE */}
+                 <button
+                    onClick={() => deleteProduct(p._id)}
+                    className="p-2 rounded-lg hover:bg-red-100 transition"
+                     title="Delete product"
+                    >
+                     <TrashIcon className="w-4 h-4 text-red-500" />
+                  </button>
+                    </td>
 
                 </tr>
               ))}

@@ -14,7 +14,7 @@ const StockManagement = () => {
 
   // FETCH PRODUCTS
   const fetchProducts = async () => {
-    const res = await fetch("http://localhost:5000/api/products", {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/products`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

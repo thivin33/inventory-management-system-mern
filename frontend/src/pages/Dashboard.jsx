@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products/dashboard-stats", {
+    fetch(`${process.env.REACT_APP_API_URL}/api/products/dashboard-stats`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

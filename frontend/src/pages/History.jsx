@@ -7,7 +7,7 @@ const History = () => {
   // 🔹 Fetch logs from backend
   const fetchLogs = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/logs", {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/logs`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
