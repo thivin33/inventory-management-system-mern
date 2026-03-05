@@ -28,7 +28,7 @@ const StockManagement = () => {
   }, []);
 
   const handleSubmit = async (type) => {
-    await fetch(`http://localhost:5000/api/stock/${type}`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/stock/${type}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -16,7 +16,7 @@ const Products = () => {
 
   // 🔹 Fetch products
   const fetchProducts = async () => {
-    const res = await fetch("http://localhost:5000/api/products", {
+    const res = await fetch(`${process.env.REACT_APP_API_URL}/api/products`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -39,8 +39,8 @@ const Products = () => {
     e.preventDefault();
 
     const url = editId
-      ? `http://localhost:5000/api/products/${editId}`
-      : "http://localhost:5000/api/products";
+      ? `${process.env.REACT_APP_API_URL}/api/products/${editId}`
+      : `${process.env.REACT_APP_API_URL}/api/products`;
 
     const method = editId ? "PUT" : "POST";
 
