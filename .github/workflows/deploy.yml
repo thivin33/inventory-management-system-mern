@@ -1,4 +1,4 @@
-name: MERN CI/CD Pipeline
+name: MERN Full CI/CD Pipeline
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
 
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Setup Node
@@ -20,25 +20,33 @@ jobs:
         with:
           node-version: 18
 
+      # Install backend dependencies
       - name: Install Backend Dependencies
         run: |
           cd backend
           npm install
 
+      # Install frontend dependencies
       - name: Install Frontend Dependencies
         run: |
           cd frontend
           npm install
 
+      # Build frontend
       - name: Build Frontend
         run: |
           cd frontend
           npm run build
 
-      - name: Docker Build Backend
-        run: |
-          docker build -t ims-backend ./backend
+      # Docker build backend
+      - name: Build Backend Docker Image
+        run: docker build -t ims-backend ./backend
 
-      - name: Docker Build Frontend
+      # Docker build frontend
+      - name: Build Frontend Docker Image
+        run: docker build -t ims-frontend ./frontend
+
+      # Trigger Render deployment
+      - name: Deploy Backend to Render
         run: |
-          docker build -t ims-frontend ./frontend
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
